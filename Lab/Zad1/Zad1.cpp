@@ -1,8 +1,8 @@
 // Zofia Blazyca
-// Program sortujacy tablice jednym ze sposobow: quicksort lub mergesort
-// Program zaklada, ze jest stworzony plik o nazwie "liczby.txt"
-// z liczbami do posortowania, przed rozpoczeciem dzialania programu nalezy
-// podac odpowiednia sciezke w linii 41
+
+// Program sorting an array using quicksort or mergesort
+// Program assumes the existence of file "liczby.txt" with numbers to sort
+// before starting the program, the path in line 41 should be modified
 
 #include <iostream>
 #include <fstream>
@@ -17,27 +17,27 @@ int main()
 {
     // wczytywanie nazwy
     string nazwa;
-    cout << "Podaj nazwe pliku z danymi:";
+    cout << "Enter the name of the file with data:";
     cin >> nazwa;
     while(nazwa != "liczby.txt")
     {
-        cout << "Niepoprawna nazwa! Podaj jeszcze raz: ";
+        cout << "Wrong name! Enter once again: ";
         cin >> nazwa;
     }
 
     // wybieranie sposobu sortowania
     int nrSortowania;
-    cout << "Wybierz sposob sortowania:" << endl;
-    cout << "1 - Sortowanie szybkie" << endl;
-    cout << "2 - Sortowanie przez scalanie" << endl;
+    cout << "Choose the sorting method:" << endl;
+    cout << "1 - Quicksort" << endl;
+    cout << "2 - Mergesort" << endl;
     cin >> nrSortowania;
     while(nrSortowania != 1 && nrSortowania != 2)
     {
-        cout << "Niepoprawny numer! Podaj jeszcze raz: ";
+        cout << "Wrong number! Enter once again: ";
         cin >> nrSortowania;
     }
 
-    // dzialanie na pliku i tworzenie tablicy za pomoca wskaznika
+    // operating on the file and creating an array using pointer
     ifstream plo;
     plo.open("C:\\Users\\Zosix\\CLionProjects\\P2\\Lab\\Zad1\\liczby.txt");
 
@@ -63,15 +63,15 @@ int main()
     }
     plo.close();
 
-    // sprawdzenie wczytywania
-    cout << "Tablica przed sortowaniem:" << endl;
+    // checking the input
+    cout << "Array before sorting:" << endl;
     for(int i = 0; i < liczbaElementow; i++)
     {
         cout << tab[i] << " ";
     }
     cout << endl << endl;
 
-    //wybor odpowiedniej funkcji
+    //choosing appropriate function
     if(nrSortowania == 1)
     {
         sortuj(tab, 0, liczbaElementow - 1, liczbaElementow);
@@ -81,7 +81,7 @@ int main()
         sortuj(0, liczbaElementow - 1, liczbaElementow, tab);
     }
 
-    cout << "Tablica posortowana:" << endl;
+    cout << "Sorted array:" << endl;
     for(int i = 0; i < liczbaElementow; i++)
     {
         cout << tab[i] << " ";
@@ -100,7 +100,7 @@ void swap(int &a, int &b)
 
 void sortuj(int tab[], int lewy, int prawy, int liczbaElementow)
 {
-    // quicksort rekurencja
+    // quicksort recursive
 
     if(prawy <= lewy)
         return;
@@ -127,7 +127,7 @@ void sortuj(int tab[], int lewy, int prawy, int liczbaElementow)
             break;
         }
     }
-    cout << "Tablica po kolejnym kroku sortowania:" << endl;
+    cout << "Array after the next step of sorting:" << endl;
     for(int i = 0; i < liczbaElementow; i++)
     {
         cout << tab[i] << " ";
@@ -188,7 +188,7 @@ void polacz(int tab[], int lewy, int srodek, int prawy)
 
 void sortuj(int lewy, int prawy, int liczbaElementow, int tab[])
 {
-    // mergesort rekurencja
+    // mergesort recursive
     if (lewy < prawy)
     {
         int srodek = lewy + (prawy - lewy) / 2;
@@ -196,7 +196,7 @@ void sortuj(int lewy, int prawy, int liczbaElementow, int tab[])
         sortuj(lewy, srodek, liczbaElementow, tab);
         sortuj(srodek + 1, prawy, liczbaElementow, tab);
 
-        cout << "Tablica po kolejnym kroku sortowania:" << endl;
+        cout << "Array after the next step of sorting:" << endl;
         for(int i = 0; i < liczbaElementow; i++)
         {
             cout << tab[i] << " ";

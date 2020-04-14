@@ -1,3 +1,11 @@
+// Zofia Blazyca
+
+// Simulation of a river that consists of empty fields or containing bears or fish
+// In each iteration it's picking randomly whether the animal is moving
+// If a bear meets fish, the fish is being eaten
+// If animals of the same species but different sex meet, a new animal is being created in a random field
+// If animals of the same species and same sex meet, they fight and the stronger one survives
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -32,20 +40,12 @@ public:
     {
 
     }
-    virtual void meetFish(Animal* animal, Animal** tab)
-    {
-
-    }
-    virtual void meetBear(Animal* animal)
-    {
-
-    }
     virtual void show()
     {
-        cout << "B " << power << " ";
+        cout << "Bear " << power << " ";
         if(sex)
         {
-            cout << "K" << endl;
+            cout << "F" << endl;
         } else
         {
             cout << "M" << endl;
@@ -64,20 +64,13 @@ public:
     {
 
     }
-    virtual void meetFish(Animal* animal)
-    {
 
-    }
-    virtual void needBear(Animal* animal)
-    {
-
-    }
     virtual void show()
     {
-        cout << "F " << power << " ";
+        cout << "Fish " << power << " ";
         if(sex)
         {
-            cout << "K" << endl;
+            cout << "F" << endl;
         } else
         {
             cout << "M" << endl;
@@ -164,7 +157,8 @@ int main()
             }
         }
     }
-    cout << "Rzeka w stanie poczatkowym:" << endl;
+    cout << "The river in its initial state:" << endl;
+    cout << "(Species, strength, sex)" << endl;
     for(int i = 0; i < riverSize; i++)
     {
         if(river[i] != nullptr)
@@ -172,24 +166,24 @@ int main()
         else
             cout << "0" << endl;
     }
-    // wykowywanie symulacji 3 razy
+    // running the simulation 3 times
     for(int i = 0; i < 3; i++)
     {
-        // przechodzenie po calej rzece
+        // iterating on the river
         for(int j = 0; j < riverSize; j++)
         {
-            // sprawdzanie czy pole nie jest puste
+            // checking if the field is empty
             if(river[j] == nullptr)
             {
                 continue;
             }
-            // losowanie czy zwierze ma sie ruszac
+            // picking randomly if the animal should be moving
             if(rand() % 2)
             {
-                // losowanie w ktora strone sie poruszyc
+                // picking randomly the direction
                 if(rand() % 2 && j != 0)
                 {
-                    // sprawdzanie czy poprzednie pole jest puste
+                    // checking if the previous field is empty
                     if(river[j-1] == nullptr)
                     {
                         river[j-1] = river[j];
@@ -201,7 +195,7 @@ int main()
                     }
                 } else
                 {
-                    // sprawdzanie czy poprzednie pole jest puste
+                    // checking if the previous field is empty
                     if(river[j+1] == nullptr)
                     {
                         river[j+1] = river[j];
@@ -214,7 +208,7 @@ int main()
                 }
             }
         }
-        cout << "Rzeka po " << i+1 << " przejsciu:" << endl;
+        cout << "The river after " << i+1 << " iteration:" << endl;
         for(int i = 0; i < riverSize; i++)
         {
             if(river[i] != nullptr)

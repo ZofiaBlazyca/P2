@@ -1,3 +1,7 @@
+//Zofia Blazyca
+
+// Program counting the change for purchase based on Polish coinage
+
 #include <iostream>
 #include <stack>
 
@@ -7,9 +11,9 @@ int main()
 {
     float price = 0, amountPaid = 0;
     int change = 0;
-    cout << "Podaj kwote nalezna za zakupy: ";
+    cout << "Enter the receivable for purchase: ";
     cin >> price;
-    cout << "Podaj kwote podana sprzedawcy: ";
+    cout << "Enter the amount of money given to salesman: ";
     cin >> amountPaid;
     price *= 100;
     amountPaid *= 100;
@@ -17,27 +21,27 @@ int main()
 
     if(change < 0)
     {
-        cout << "Nie oszukuj kasjera. Masz za malo pieniedzy." << endl;
+        cout << "Don't fool the salesman. You don't have enough money." << endl;
         return 0;
     }
     stack<int> changeStack;
-    changeStack.push(1); // moneta 1 gr
-    changeStack.push(2); // moneta 2 gr
-    changeStack.push(5); // moneta 5 gr
-    changeStack.push(10); // moneta 10 gr
-    changeStack.push(20); // moneta 20 gr
-    changeStack.push(50); // moneta 50 gr
-    changeStack.push(100); // moneta 1 zl
-    changeStack.push(200); // moneta 2 zl
-    changeStack.push(500); // moneta 5 zl
-    changeStack.push(1000); // banknot 10 zl
-    changeStack.push(2000); // banknot 20 zl
-    changeStack.push(5000); // banknot 50 zl
-    changeStack.push(10000); // banknot 100 zl
-    changeStack.push(20000); // banknot 200 zl
-    changeStack.push(50000); // banknot 500 zl
+    changeStack.push(1); // 1 gr coin
+    changeStack.push(2); // 2 gr coin
+    changeStack.push(5); // 5 gr coin
+    changeStack.push(10); // 10 gr coin
+    changeStack.push(20); // 20 gr coin
+    changeStack.push(50); // 50 gr coin
+    changeStack.push(100); // 1 zl coin
+    changeStack.push(200); // 2 zl coin
+    changeStack.push(500); // 5 zl coin
+    changeStack.push(1000); // 10 zl banknote
+    changeStack.push(2000); // 20 zl banknote
+    changeStack.push(5000); // 50 zl banknote
+    changeStack.push(10000); // 100 zl banknote
+    changeStack.push(20000); // 200 zl banknote
+    changeStack.push(50000); // 500 zl banknote
 
-    cout << "Reszta: " << endl;
+    cout << "Change: " << endl;
     while(!changeStack.empty())
     {
         int amount = change / changeStack.top();
